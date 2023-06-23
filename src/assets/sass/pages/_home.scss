@@ -1,0 +1,240 @@
+* {
+  box-sizing: border-box;
+}
+
+.css-diner {
+  display: flex;
+  justify-content: space-between;
+  // min-width: 500px;
+
+
+  background: #2E2A23;
+
+  &__game {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0 30px 0;
+
+  }
+
+  &__task {
+    margin: 0 0 30px 0;
+    font-size: 44px;
+    text-align: center;
+    color: $color-light-l;
+
+  }
+
+  &__help-btn {
+    margin: 0 0 45px 0;
+    padding: 8px 15px 10px 15px;
+    border: none;
+    border-radius: 25px;
+    color: $color-light-l;
+    background: $color-dark-m;
+  }
+
+  &__table-wrapper {
+    margin: 0 0 60px 0;
+  }
+
+  &__table {
+    min-width: 275px;
+    border-bottom: 100px solid #CF8E27;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+
+  }
+
+  &__table-edge {
+    position: relative;
+    min-width: 275px;
+    border-top: 10px solid #8A5D16;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+
+  &__table-leg {
+    position: absolute;
+    bottom: -6px;
+    width: 25px;
+    height: 6px;
+    background: #6A460C;
+
+    &_left {
+      left: 15px;
+    }
+
+    &_right {
+      right: 15px;
+    }
+  }
+
+  &__text-editor {
+    display: flex;
+    margin: 0 20px 0 20px;
+    border: 10px solid $color-dark-l;
+    border-radius: 5px;
+  }
+
+  &__css-editor {
+    flex: 0 0 50%;
+    min-width: 330px;
+    display: flex;
+    flex-wrap: wrap;
+
+    background: $color-light-xxl ;
+  }
+
+  &__headline {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: space-between;
+    padding: 10px 15px;
+    color: $color-light-xl;
+    background: $color-dark-s;
+  }
+
+  &__heading {}
+
+  &__caption {}
+
+  &__line-numbers {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 0 10px;
+
+
+    p {
+      text-align: end;
+    }
+
+    &_css-numbers {
+      color: #999999;
+      background: #dddddd;
+    }
+
+    &_html-numbers {
+      color: #666666;
+    }
+  }
+
+  &__css-field {}
+
+  &__answer {}
+
+  &__input {}
+
+  &__enter-btn {}
+
+  &__html-viewer {
+    flex: 1 1 50%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__html-field {
+    color: rgba(255, 255, 255, .3);
+
+  }
+
+  pre {}
+
+  &__controls {
+    min-width: 375px;
+    background: $color-dark-xl;
+  }
+
+
+  @media (max-width: 1006px) {
+    &__controls {
+      min-width: 30px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    &__text-editor {
+      flex-wrap: wrap;
+    }
+
+    &__html-viewer {
+      flex: 0 0 100%;
+      order: 1;
+    }
+
+    &__css-editor {
+      flex: 0 0 100%;
+      order: 2;
+    }
+  }
+}
+
+
+
+.controls {
+  padding: 20px;
+  color: $color-light-l;
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 25px;
+  }
+
+  &__levels {}
+
+  &__curent-level {}
+
+  &__max-levels {}
+
+  &__level-state {}
+
+  &__prev-level {}
+
+  &__next-level {}
+
+  &__burger {
+    display: block;
+    position: relative;
+    top: 5px;
+    z-index: 5;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+    >span,
+    &::before,
+    &::after {
+      left: 0;
+      position: absolute;
+      height: 10%;
+      width: 100%;
+      transition: all 0.3s ease 0s;
+      background-color: $color-light-l;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+
+    >span {
+      top: 50%;
+      transform: scale(1) translate(0px, -50%);
+    }
+  }
+}

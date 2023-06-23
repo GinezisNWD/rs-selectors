@@ -4,6 +4,7 @@
 @import 'vendors/bootstrap';
 
 @import 'base/normalize';
+@import 'base/reset';
 @import 'base/typography';
 
 @import 'layout/navigation';
@@ -29,7 +30,6 @@ body {
 }
 
 .container {
-  max-width: 1200px;
   margin: 0px auto;
 }
 
@@ -47,7 +47,6 @@ body {
 
 .main {
   flex: 1 1 auto;
-  border: 5px solid green;
 }
 
 .footer {
