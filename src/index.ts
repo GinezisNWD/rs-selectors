@@ -1,7 +1,8 @@
 import './styles/styles.css'
 import './assets/sass/main.scss'
+import CSSDinnerApp from './scripts/app'
+const levelNumber = Number(localStorage.getItem('levelNumber'))
+// console.log(curentLevel)
 
-let tsstring: number
-tsstring = 2
-
-console.log(tsstring)
+const app = new CSSDinnerApp(0)
+app.start()
