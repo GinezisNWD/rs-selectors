@@ -57,5 +57,3 @@ const levels: Level[] = [
 ]
 
 export default levels
-
-// Selects all elements of type <strong>A</strong>.Type refers to the type of tag, so <tag>div</tag>, <tag> p</tag> and <tag>ul</tag> are all different element types.

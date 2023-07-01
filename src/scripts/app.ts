@@ -63,7 +63,6 @@ class CSSDinnerApp {
 
   private renderHelpList(helpList: string[]): void {
     this.helpList.innerHTML = ''
-    console.log(helpList)
     helpList.forEach(example => {
       const helpExample = document.createElement('li')
       helpExample.classList.add('help__example')
