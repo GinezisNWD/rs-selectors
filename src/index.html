@@ -24,10 +24,7 @@
             <h2 class="css-diner__task"></h2>
             <button class="css-diner__help-btn">Step-brother! Help, I'm stuck!</button>
             <div class="css-diner__table-wrapper">
-              <div class="css-diner__table">
-                <div class="plate"></div>
-                <div class="plate"></div>
-              </div>
+              <div class="css-diner__table"></div>
               <div class="css-diner__table-edge">
                 <div class="css-diner__table-leg css-diner__table-leg_left"></div>
                 <div class="css-diner__table-leg css-diner__table-leg_right"></div>
@@ -63,7 +60,8 @@
                 </div>
                 <div class="css-diner__css-field">
                   <div class="css-diner__answer">
-                    <input type="text" placeholder="Type in a CSS selector" class="css-diner__input">
+                    <input type="text" placeholder="Type in a CSS selector"
+                      class="css-diner__input css-diner__input_strobe">
                     <buttom class="css-diner__enter-btn">enter</buttom>
                   </div>
                   <pre>
@@ -106,13 +104,10 @@ Ex → "5" for level 5
                   <p>19</p>
                   <p>20</p>
                 </div>
-
-                <div class="css-diner__html-field">
+                <div class="css-diner__html-field-wrapper">
                   <div>&lt;div class="table&gt;</div>
-                  <div> &lt;plate/&gt;</div>
-                  <div>&lt;plate/&gt;</div>
+                  <div class="css-diner__html-field"></div>
                   <div>&lt;/div&gt;</div>
-                  <div></div>
                 </div>
               </div>
             </div>
@@ -121,10 +116,12 @@ Ex → "5" for level 5
             <div class="help__nav">
               <h2 class="help__levels">
                 Level <span class="help__curent-level"></span> of <span class="help__max-levels"></span>
-                <span class="help__level-state">v</span>
+                <span class="help__level-state"></span>
               </h2>
-              <span class="help__prev-level">&lt;</span>
-              <span class="help__next-level">&gt;</span>
+              <div class="help__contols">
+                <button class="help__prev-level">&lt;</button>
+                <button class="help__next-level _active">&gt;</button>
+              </div>
               <div class="help__burger"><span></span></div>
             </div>
             <h2 class="help__title"></h2>

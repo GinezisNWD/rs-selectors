@@ -1,0 +1,130 @@
+tag {
+  padding: 3px 6px;
+  color: $color-light-xl;
+  background: rgba(255, 255, 255, .1);
+
+  &::before {
+    content: '<';
+  }
+
+  &::after {
+    content: '>';
+  }
+}
+
+strong {
+  padding: 3px 6px;
+  font-size: 14px;
+  color: $color-light-xl;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.bento,
+.plate,
+.fancy {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 8px 0px rgba(0, 0, 0, .1);
+}
+
+
+.plate,
+.fancy {
+  background-color: #ffffff;
+  border-bottom: solid 5px #DDD;
+  border-radius: 50%;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: calc(50% - 32px);
+    top: calc(50% - 32px);
+    height: 65px;
+    width: 65px;
+    border-radius: 60px;
+    border-top: solid 6px #CCC;
+    opacity: .4;
+    background: rgba(255, 255, 255, 1);
+  }
+}
+
+.bento {
+  background-color: #a52a2a;
+  border: solid 3px #711c12;
+  border-width: 20px 2px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: calc(100%);
+    top: 0;
+    left: 0;
+    border: solid 10px rgba(0, 0, 0, .1);
+    border-width: 10px 0 0 0px;
+  }
+}
+
+.fancy {
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 90px;
+    width: 90px;
+    border-radius: 60px;
+    border: solid 10px #009ff2;
+    opacity: .4;
+  }
+}
+
+
+
+
+.strobe {
+  transform-origin: bottom;
+  animation: strobe 1s infinite;
+  animation-delay: 0s;
+}
+
+// Анимация взята с оригинального приложения
+@keyframes strobe {
+  0% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+
+  10% {
+    transform: skew(1deg, 0deg) scaleY(.9);
+  }
+
+  50% {
+    transform: skew(-4deg, 0deg) scaleX(1);
+  }
+
+  60% {
+    transform: skew(-1deg, 0deg) scaleY(.9);
+  }
+
+  100% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+}
+
+@keyframes input-strobe {
+  0% {
+    background-color: inherit;
+  }
+
+  50% {
+    background-color: rgba(145, 231, 248, 0.9);
+  }
+
+  100% {
+    background-color: inherit;
+  }
+}

@@ -41,11 +41,15 @@
   &__table {
     display: flex;
     justify-content: space-around;
-    gap: 10px;
+    gap: 20px;
     min-width: 275px;
     min-height: 100px;
     padding: 15px 15px 15px;
     background: #CF8E27;
+
+    div._hover {
+      box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.55);
+    }
   }
 
   &__table-edge {
@@ -120,13 +124,39 @@
     }
   }
 
-  &__css-field {}
+  &__css-field {
+    flex: 1 1 auto;
+  }
 
-  &__answer {}
+  &__answer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px 0 5px;
+  }
 
-  &__input {}
+  &__input {
+    width: 100%;
+    font-family: monospace;
+    font-size: 1.2em;
+    background: inherit;
 
-  &__enter-btn {}
+    &_strobe {
+      animation: input-strobe 1s infinite;
+      animation-delay: 0s;
+    }
+  }
+
+  &__enter-btn {
+    font-family: monospace;
+    border: 2px solid gray;
+    border-bottom: 6px solid gray;
+    font-size: 0.8em;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   &__html-viewer {
     flex: 1 1 50%;
@@ -135,10 +165,21 @@
     min-width: 280px;
   }
 
-  &__html-field {
+  &__html-field-wrapper {
     color: rgba(255, 255, 255, .3);
     font-family: monospace;
     font-size: 16px;
+  }
+
+  &__html-field {
+    div {
+      cursor: default;
+      margin: 0 0 2px 0;
+    }
+
+    div._hover {
+      color: $color-light-xxl;
+    }
 
   }
 
@@ -146,7 +187,6 @@
     width: 375px;
     background: $color-dark-xl;
   }
-
 
   @media (max-width: 1045px) {
     &__help {
@@ -187,13 +227,78 @@
     font-size: 25px;
   }
 
-  &__levels {}
+  &__levels {
+    display: flex;
+    gap: 4px;
+  }
 
   &__curent-level {}
 
   &__max-levels {}
 
-  &__level-state {}
+  &__level-state {
+    position: relative;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 3px;
+      top: 50%;
+      transform: rotate(45deg);
+      background-color: $color-light-xl;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 3px;
+      top: 40%;
+      left: 4px;
+      transform: rotate(-45deg);
+      background-color: $color-light-xl;
+    }
+
+    &._done {
+      &::before {
+        background-color: green;
+      }
+
+      &::after {
+        background-color: green;
+      }
+    }
+
+  }
+
+  &__contols {
+    display: flex;
+    gap: 15px;
+    font-size: 32px;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      color: #343029;
+      border: 3px solid #343029;
+      background: inherit;
+      cursor: default;
+
+      &._active {
+        color: inherit;
+        border-color: $color-light-l;
+        cursor: pointer;
+      }
+    }
+  }
 
   &__prev-level {}
 
@@ -274,49 +379,5 @@
 
   &__example {
     padding: 10px 0 12px 0;
-  }
-}
-
-tag {
-  padding: 3px 6px;
-  color: $color-light-xl;
-  background: rgba(255, 255, 255, .1);
-
-  &::before {
-    content: '<';
-  }
-
-  &::after {
-    content: '>';
-  }
-}
-
-strong {
-  padding: 3px 6px;
-  font-size: 14px;
-  color: $color-light-xl;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.plate {
-  position: relative;
-  z-index: 2;
-  width: 100px;
-  height: 100px;
-  background-color: #ffffff;
-  border-radius: 50%;
-
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: calc(50% - 32px);
-    top: calc(50% - 32px);
-    height: 65px;
-    width: 65px;
-    border-radius: 60px;
-    border-top: solid 6px #CCC;
-    opacity: .4;
-    background: rgba(255, 255, 255, 1);
   }
 }

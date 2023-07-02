@@ -17,6 +17,8 @@
 @import 'components/buttons';
 @import 'components/carousel';
 @import 'components/cover';
+@import 'components/css-dinner-components.scss';
+
 @import 'components/dropdown';
 
 @import 'pages/home';
@@ -41,14 +43,10 @@ body {
   flex-direction: column;
 }
 
-.header {
-  border: 5px solid red;
-}
+.header {}
 
 .main {
   flex: 1 1 auto;
 }
 
-.footer {
-  border: 5px solid blue;
-}
+.footer {}
