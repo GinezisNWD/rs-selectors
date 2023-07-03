@@ -7,6 +7,7 @@ class CSSDinnerApp {
   title: HTMLElement
   helpButton: HTMLElement | null
   table: HTMLElement
+  textEditor: HTMLElement
   input: HTMLInputElement
   enterButton: HTMLElement | null
   htmlField: HTMLElement
@@ -28,6 +29,7 @@ class CSSDinnerApp {
     this.title = document.querySelector('.css-diner__task') as HTMLElement
     this.helpButton = document.querySelector('.css-diner__help-btn')
     this.table = document.querySelector('.css-diner__table') as HTMLElement
+    this.textEditor = document.querySelector('.css-diner__text-editor') as HTMLElement
     this.input = document.querySelector('.css-diner__input') as HTMLInputElement
     this.enterButton = document.querySelector('.css-diner__enter-btn')
     this.htmlField = document.querySelector('.css-diner__html-field') as HTMLElement
@@ -51,6 +53,13 @@ class CSSDinnerApp {
       console.log(this.levels[this.levelNumber].correctAnswer)
     })
     this.enterButton?.addEventListener('click', this.isCorrectAnswer)
+    this.textEditor.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+        e.preventDefault()
+        this.isCorrectAnswer()
+      }
+
+    })
     this.prevLvlButton?.addEventListener('click', this.renderPrevLevel)
     this.nextLvlButton?.addEventListener('click', this.renderNextLevel)
   }
@@ -114,17 +123,23 @@ class CSSDinnerApp {
     } else { this.input?.classList.add('css-diner__input_strobe') }
   }
 
-  private isCorrectAnswer = (e: Event): void => {
-    e.preventDefault()
+  private isCorrectAnswer = (): void => {
     if (this.input?.value.trim() === this.levels[this.levelNumber].correctAnswer) {
       this.levelState?.classList.add('_done')
       this.levels[this.levelNumber].isDone = true
-      this.renderNextLevel()
+      this.textEditor.classList.add('win')
+      this.textEditor.addEventListener('animationend', () => {
+        this.textEditor.classList.remove('win')
+        this.renderNextLevel()
+        this.renderLevel(this.levelNumber)
+      })
 
-      this.renderLevel(this.levelNumber)
 
     } else {
-      console.log(false)
+      this.textEditor.classList.add('shake')
+      this.textEditor.addEventListener('animationend', () => {
+        this.textEditor.classList.remove('shake')
+      })
     }
   }
 
