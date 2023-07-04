@@ -52,10 +52,27 @@ const levels: Level[] = [
     helpList: ['<strong>#cool</strong> selects any element with <strong>id="cool"</strong>', '<strong>ul#long</strong> selects <strong>ul id="long"</strong>'],
     correctAnswer: '#fancy'
   },
+  {
+    title: 'Select the apple on the plate',
+    table: '<div data-tag="bento1" class="bento"></div><div data-tag="plate1" class="plate"><div data-tag="apple1" class="apple strobe"></div></div><div data-tag="apple2" class="apple"></div>',
+    htmlField: '<div data-tag="bento1">&nbsp;&nbsp;&lt;bento /&gt;</div> <div data-tag="plate1">&nbsp;&nbsp;&lt;plate&gt;</div> <div data-tag=" apple1">&nbsp;&nbsp;&nbsp;&nbsp;&lt;apple /&gt;</div> <div data-tag="plate1">&nbsp;&nbsp;&lt;plate /&gt;</div> <div data-tag="apple2">&nbsp;&nbsp;&lt;apple /&gt;</div>',
+    curentLevel: 4,
+    isDone: false,
+    helpTitle: 'Descendant Selector',
+    helpSubTitle: 'Select an element inside another element',
+    helpSyntax: 'A  B',
+    helpPromt: 'Selects all <strong>B</strong> inside of <strong>A</strong>. <strong>B</strong> is called a descendant because it is inside of another element.',
+    helpList: ['<strong>p</strong><strong>strong</strong>selects all <tag>strong</tag> elements that are inside of any <tag>p</tag>',
+      '<strong>#fancy</strong><strong>span</strong> selects any <tag>span</tag> elements that are inside of the element with <strong>id="fancy"</strong>'],
+    correctAnswer: 'plate apple'
+  },
 
 ]
 
 export default levels
+
+
+
 
 
 

@@ -83,6 +83,55 @@ strong {
   }
 }
 
+.orange,
+.apple,
+.pickle {
+  box-shadow: 0px 5px 0px rgba(0, 0, 0, .2);
+  display: inline-block;
+  margin: 0 10px;
+  height: 60px;
+}
+
+.plate>.apple {
+  left: 10px;
+}
+
+.plate>.apple {
+  &._hover {
+    box-shadow: 0px 0px 0px 6px rgba(100, 100, 100, 0.4);
+  }
+}
+
+.apple,
+.orange {
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px 4px 15px 4px;
+  height: 60px;
+  width: 60px;
+  position: relative;
+
+  margin: 20px 10px;
+}
+
+.orange:before,
+.apple:before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, .3);
+  height: 30%;
+  width: 30%;
+  top: 0px;
+  left: calc(50% - 15%);
+  border-radius: 100px;
+}
+
+.apple {
+  background: #e41919;
+  border-color: #ab1212;
+}
+
 
 
 
