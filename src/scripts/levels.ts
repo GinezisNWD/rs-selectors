@@ -55,7 +55,7 @@ const levels: Level[] = [
   {
     title: 'Select the apple on the plate',
     table: '<div data-tag="bento1" class="bento"></div><div data-tag="plate1" class="plate"><div data-tag="apple1" class="apple strobe"></div></div><div data-tag="apple2" class="apple"></div>',
-    htmlField: '<div data-tag="bento1">&nbsp;&nbsp;&lt;bento /&gt;</div> <div data-tag="plate1">&nbsp;&nbsp;&lt;plate&gt;</div> <div data-tag=" apple1">&nbsp;&nbsp;&nbsp;&nbsp;&lt;apple /&gt;</div> <div data-tag="plate1">&nbsp;&nbsp;&lt;plate /&gt;</div> <div data-tag="apple2">&nbsp;&nbsp;&lt;apple /&gt;</div>',
+    htmlField: '<div data-tag="bento1">&nbsp;&nbsp;&lt;bento /&gt;</div> <div data-tag="plate1">&nbsp;&nbsp;&lt;plate&gt;</div> <div data-tag="apple1">&nbsp;&nbsp;&nbsp;&nbsp;&lt;apple /&gt;</div> <div data-tag="plate1">&nbsp;&nbsp;&lt;plate /&gt;</div> <div data-tag="apple2">&nbsp;&nbsp;&lt;apple /&gt;</div>',
     curentLevel: 4,
     isDone: false,
     helpTitle: 'Descendant Selector',
