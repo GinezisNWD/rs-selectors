@@ -50,15 +50,16 @@ class CSSDinnerApp {
     this.game?.addEventListener('mouseover', this.hover)
     this.input?.addEventListener('input', this.inputState)
     this.helpButton?.addEventListener('click', () => {
-      console.log(this.levels[this.levelNumber].correctAnswer)
+      this.input.value = ''
+      this.input.classList.remove('css-diner__input_strobe')
+      this.printAnswer(this.levels[this.levelNumber].correctAnswer)
     })
     this.enterButton?.addEventListener('click', this.isCorrectAnswer)
-    this.textEditor.addEventListener('keydown', (e: KeyboardEvent) => {
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.code === 'Enter' || e.code === 'NumpadEnter') {
         e.preventDefault()
         this.isCorrectAnswer()
       }
-
     })
     this.prevLvlButton?.addEventListener('click', this.renderPrevLevel)
     this.nextLvlButton?.addEventListener('click', this.renderNextLevel)
@@ -68,8 +69,8 @@ class CSSDinnerApp {
     this.title.textContent = this.levels[levelNumber].title
     this.input.value = ''
     this.input.classList.add('css-diner__input_strobe')
-    this.htmlField.innerHTML = this.levels[levelNumber].htmlField
     this.table.innerHTML = this.levels[levelNumber].table
+    this.htmlField.innerHTML = this.levels[levelNumber].htmlField
     this.curentLevel.textContent = `${this.levels[levelNumber].curentLevel}`
     this.maxLevels.textContent = `${this.levels.length}`
     this.renderLevelState()
@@ -163,6 +164,17 @@ class CSSDinnerApp {
     if (this.levelNumber + 1 >= this.levels.length) {
       this.nextLvlButton?.classList.remove('_active')
     }
+  }
+
+  private printAnswer = (str: string) => {
+    let text = str
+    if (text.length > 0) {
+      this.input.value += text[0]
+      setTimeout(() => {
+        this.printAnswer(text.slice(1))
+      }, 200)
+    }
+
   }
 }
 
