@@ -24,7 +24,6 @@ strong {
 .fancy {
   display: inline-block;
   position: relative;
-  z-index: 2;
   width: 100px;
   height: 100px;
   box-shadow: 0px 8px 0px rgba(0, 0, 0, .1);
@@ -75,6 +74,7 @@ strong {
     position: absolute;
     top: 5px;
     left: 5px;
+    z-index: 2;
     height: 90px;
     width: 90px;
     border-radius: 60px;
@@ -86,32 +86,54 @@ strong {
 .orange,
 .apple,
 .pickle {
+  z-index: 3;
   box-shadow: 0px 5px 0px rgba(0, 0, 0, .2);
   display: inline-block;
   margin: 0 10px;
   height: 60px;
 }
 
-.plate>.apple {
+.plate .apple,
+.plate .orange {
   left: 10px;
 }
 
-.plate>.apple {
+.plate .apple,
+.plate .orange,
+.plate .pickle,
+.fancy .apple,
+.fancy .orange,
+.fancy .pickle {
   &._hover {
     box-shadow: 0px 0px 0px 6px rgba(100, 100, 100, 0.4);
   }
 }
 
+.bento .apple,
+.bento .orange {
+  top: -20px;
+  left: 5px;
+}
+
+.plate .pickle,
+.fancy .pickle {
+  left: 25px;
+}
+
+.bento .pickle {
+  top: -20px;
+  left: 25px;
+}
+
 .apple,
 .orange {
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 2px 4px 15px 4px;
   height: 60px;
   width: 60px;
   position: relative;
-
   margin: 20px 10px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px 4px 15px 4px;
 }
 
 .orange:before,
@@ -132,8 +154,35 @@ strong {
   border-color: #ab1212;
 }
 
+.orange {
+  background: orange;
+  border-color: #bd6e07;
+}
 
+.pickle {
+  background: #179837;
+  width: 25px;
+  border-radius: 30px;
+  display: inline-block;
+  position: relative;
+  margin: 20px 10px;
+  border: solid 2px #025a18;
+  border-width: 2px 2px 9px 2px;
+}
 
+.orange.small,
+.apple.small {
+  height: 30px;
+  width: 30px;
+  border-width: 2px 4px 8px 4px;
+  margin: 30px 10px;
+}
+
+.plate .small,
+.bento .small,
+.fancy .small {
+  left: 22.5px;
+}
 
 .strobe {
   transform-origin: bottom;
@@ -208,7 +257,6 @@ strong {
   }
 }
 
-
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -226,7 +274,6 @@ strong {
     transform: translateX(5px);
   }
 }
-
 
 @keyframes win {
   0% {
