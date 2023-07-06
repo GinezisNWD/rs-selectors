@@ -46,7 +46,9 @@ class CSSDinnerApp {
   }
 
   public start(): void {
+    this.getLevelsProgress()
     this.renderLevel(this.levelNumber)
+    this.contolsValidation()
     this.game?.addEventListener('mouseover', this.hover)
     this.input?.addEventListener('input', this.inputState)
     this.helpButton?.addEventListener('click', () => {
@@ -79,6 +81,7 @@ class CSSDinnerApp {
     this.helpSyntax.textContent = this.levels[levelNumber].helpSyntax
     this.helpPromt.innerHTML = this.levels[levelNumber].helpPromt
     this.renderHelpList(this.levels[levelNumber].helpList)
+    localStorage.setItem('levelNumber', `${this.levelNumber}`)
   }
 
   private renderLevelState(): void {
@@ -128,12 +131,13 @@ class CSSDinnerApp {
     if (this.input?.value.trim() === this.levels[this.levelNumber].correctAnswer) {
       this.levelState?.classList.add('_done')
       this.levels[this.levelNumber].isDone = true
+      this.setLevelsProgress()
       this.textEditor.classList.add('win')
       this.textEditor.addEventListener('animationend', () => {
         this.textEditor.classList.remove('win')
-        this.renderNextLevel()
-        this.renderLevel(this.levelNumber)
       })
+      this.renderNextLevel()
+      this.renderLevel(this.levelNumber)
 
 
     } else {
@@ -149,9 +153,7 @@ class CSSDinnerApp {
     if (!this.nextLvlButton?.classList.contains('_active')) this.nextLvlButton?.classList.add('_active')
     this.levelNumber -= 1
     this.renderLevel(this.levelNumber)
-    if (this.levelNumber === 0) {
-      this.prevLvlButton?.classList.remove('_active')
-    }
+    this.contolsValidation()
   }
 
   private renderNextLevel = () => {
@@ -161,8 +163,16 @@ class CSSDinnerApp {
     this.levelNumber += 1
     this.renderLevel(this.levelNumber)
 
+    this.contolsValidation()
+  }
+
+  private contolsValidation() {
     if (this.levelNumber + 1 >= this.levels.length) {
       this.nextLvlButton?.classList.remove('_active')
+    }
+
+    if (this.levelNumber === 0) {
+      this.prevLvlButton?.classList.remove('_active')
     }
   }
 
@@ -174,7 +184,24 @@ class CSSDinnerApp {
         this.printAnswer(text.slice(1))
       }, 200)
     }
+  }
 
+  private getLevelsProgress() {
+    if (localStorage.getItem('levelsProgress') === null) {
+      const defaultLevelProgress: boolean[] = new Array(this.levels.length).fill(false)
+      localStorage.setItem('levelsProgress', JSON.stringify(defaultLevelProgress))
+    }
+    const savedLevelProgress: boolean[] = JSON.parse(localStorage.getItem('levelsProgress')!)
+    for (let i = 0; i < this.levels.length; i += 1) {
+      this.levels[i].isDone = savedLevelProgress[i]
+    }
+    console.log('saved', savedLevelProgress)
+  }
+
+  private setLevelsProgress() {
+    const curenLevelsProgress: boolean[] = this.levels.map(level => level.isDone)
+    localStorage.setItem('levelsProgress', JSON.stringify(curenLevelsProgress))
+    console.log('current', curenLevelsProgress)
   }
 }
 
