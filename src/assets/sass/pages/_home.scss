@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.wrapper {
+  background: #2E2A23;
+}
+
 .css-diner {
   display: flex;
   justify-content: space-between;
@@ -13,7 +17,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    padding: 20px 0 30px 0;
+    padding: 20px 375px 30px 0;
 
   }
 
@@ -184,17 +188,15 @@
   }
 
   &__help {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 375px;
-    background: $color-dark-xl;
+    height: 100%;
+    padding: 20px;
   }
 
   @media (max-width: 1045px) {
-    &__help {
-      display: none;
-    }
-  }
-
-  @media (max-width: 767px) {
     &__text-editor {
       flex-wrap: wrap;
     }
@@ -209,13 +211,22 @@
       order: 2;
     }
   }
+
+  @media (max-width: 767px) {
+    &__game {
+      padding-right: 0;
+    }
+
+    &__help {
+      display: none;
+    }
+  }
 }
 
 
 
 .help {
-  min-width: 375px;
-  padding: 20px;
+  background: $color-dark-xl;
   color: $color-light-l;
 
   &__nav {
