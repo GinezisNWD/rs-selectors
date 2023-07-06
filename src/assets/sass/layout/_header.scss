@@ -1,8 +1,10 @@
 .header {
+  padding: 0 10px;
   color: $color-light-l;
   background: $color-light-s;
 
   &__title {
+    margin: 0;
     font-size: 18px;
     display: inline-block;
     position: relative;
