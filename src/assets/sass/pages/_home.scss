@@ -393,3 +393,40 @@
     padding: 10px 0 12px 0;
   }
 }
+
+.css-diner {
+  &__levels-list {
+    position: absolute;
+    bottom: 0;
+    right: -100%;
+    z-index: 5;
+    height: 95%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 40px 0 0 0;
+    transition: right 0.3s ease 0s;
+
+    background-color: inherit;
+
+    &._active {
+      right: 0;
+    }
+  }
+
+  &__levels-item {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+  }
+
+  & .done {
+    color: $color-light-xxl;
+
+    &::after {
+      content: 'V';
+      padding: 0 0 0 5px;
+      color: green;
+    }
+  }
+}

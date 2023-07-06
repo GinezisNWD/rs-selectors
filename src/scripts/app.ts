@@ -1,9 +1,9 @@
-import levels from "./levels"
+import { levels, Level } from "./levels"
 
 class CSSDinnerApp {
   game: HTMLElement | null
   levelNumber: number
-  levels
+  levels: Level[]
   title: HTMLElement
   helpButton: HTMLElement | null
   table: HTMLElement
@@ -16,6 +16,8 @@ class CSSDinnerApp {
   levelState: HTMLElement | null
   prevLvlButton: HTMLElement | null
   nextLvlButton: HTMLElement | null
+  burgerButton: HTMLElement | null
+  levelsList: HTMLElement
   helpTitle: HTMLElement
   helpSubTitle: HTMLElement
   helpSyntax: HTMLElement
@@ -38,6 +40,8 @@ class CSSDinnerApp {
     this.levelState = document.querySelector('.help__level-state')
     this.prevLvlButton = document.querySelector('.help__prev-level')
     this.nextLvlButton = document.querySelector('.help__next-level')
+    this.burgerButton = document.querySelector('.help__burger')
+    this.levelsList = document.querySelector('.css-diner__levels-list') as HTMLElement
     this.helpTitle = document.querySelector('.help__title') as HTMLElement
     this.helpSubTitle = document.querySelector('.help__subtitle') as HTMLElement
     this.helpSyntax = document.querySelector('.help__syntax') as HTMLElement
@@ -61,6 +65,24 @@ class CSSDinnerApp {
     })
     this.prevLvlButton?.addEventListener('click', this.renderPrevLevel)
     this.nextLvlButton?.addEventListener('click', this.renderNextLevel)
+    this.burgerButton?.addEventListener('click', () => {
+      this.levelsList?.classList.toggle('_active')
+      if (!this.levelsList.classList.contains('_active')) return
+      this.renderBurgerMenu()
+    })
+  }
+
+  private renderBurgerMenu() {
+    this.levelsList.innerHTML = ''
+    this.levels.forEach(elem => this.createBurgerMenu(elem))
+  }
+
+  private createBurgerMenu(level: Level) {
+    const item = document.createElement('li')
+    item.classList.add('css-diner__levels-item')
+    item.innerText = `${level.curentLevel} ${level.title}`
+    if (level.isDone) item.classList.add('done')
+    this.levelsList.append(item)
   }
 
   private renderLevel(levelNumber: number): void {
@@ -78,6 +100,7 @@ class CSSDinnerApp {
     this.helpPromt.innerHTML = this.levels[levelNumber].helpPromt
     this.renderHelpList(this.levels[levelNumber].helpList)
     localStorage.setItem('levelNumber', `${this.levelNumber}`)
+    this.renderBurgerMenu()
   }
 
   private renderLevelState(): void {

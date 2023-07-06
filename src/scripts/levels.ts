@@ -155,7 +155,7 @@ const levels: Level[] = [
 
 
 
-export default levels
+export { levels, Level }
 
 
 
