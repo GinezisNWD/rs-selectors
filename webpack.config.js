@@ -60,6 +60,10 @@ const WebpackConfig = {
         {
           from: path.resolve(__dirname, 'src/assets/favicon_io'),
           to: path.resolve(__dirname, 'dist/assets/favicon_io')
+        },
+        {
+          from: path.resolve(__dirname, 'src/assets/svg'),
+          to: path.resolve(__dirname, 'dist/assets/svg')
         }
       ]
     }),
