@@ -1,0 +1,17 @@
+.header {
+  color: $color-light-l;
+  background: $color-light-s;
+
+  &__title {
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+
+    &::before {
+      content: url('../favicon_io/favicon.png');
+      position: relative;
+      top: 8px;
+      margin: 0 10px 0 0;
+    }
+  }
+}
