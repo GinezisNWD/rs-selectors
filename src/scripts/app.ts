@@ -51,11 +51,7 @@ class CSSDinnerApp {
     this.contolsValidation()
     this.game?.addEventListener('mouseover', this.hover)
     this.input?.addEventListener('input', this.inputState)
-    this.helpButton?.addEventListener('click', () => {
-      this.input.value = ''
-      this.input.classList.remove('css-diner__input_strobe')
-      this.printAnswer(this.levels[this.levelNumber].correctAnswer)
-    })
+    this.helpButton?.addEventListener('click', this.levelAssistant)
     this.enterButton?.addEventListener('click', this.isCorrectAnswer)
     document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.code === 'Enter' || e.code === 'NumpadEnter') {
@@ -139,7 +135,6 @@ class CSSDinnerApp {
       this.renderNextLevel()
       this.renderLevel(this.levelNumber)
 
-
     } else {
       this.textEditor.classList.add('shake')
       this.textEditor.addEventListener('animationend', () => {
@@ -176,13 +171,26 @@ class CSSDinnerApp {
     }
   }
 
+  private levelAssistant = () => {
+    this.input.value = ''
+    this.input.classList.remove('css-diner__input_strobe')
+    this.printAnswer(this.levels[this.levelNumber].correctAnswer)
+  }
+
   private printAnswer = (str: string) => {
+    this.helpButton?.removeEventListener('click', this.levelAssistant)
+    this.prevLvlButton?.removeEventListener('click', this.renderPrevLevel)
+    this.nextLvlButton?.removeEventListener('click', this.renderNextLevel)
     let text = str
     if (text.length > 0) {
       this.input.value += text[0]
       setTimeout(() => {
         this.printAnswer(text.slice(1))
-      }, 200)
+      }, 100)
+    } else {
+      this.helpButton?.addEventListener('click', this.levelAssistant)
+      this.prevLvlButton?.addEventListener('click', this.renderPrevLevel)
+      this.nextLvlButton?.addEventListener('click', this.renderNextLevel)
     }
   }
 
@@ -195,13 +203,11 @@ class CSSDinnerApp {
     for (let i = 0; i < this.levels.length; i += 1) {
       this.levels[i].isDone = savedLevelProgress[i]
     }
-    console.log('saved', savedLevelProgress)
   }
 
   private setLevelsProgress() {
     const curenLevelsProgress: boolean[] = this.levels.map(level => level.isDone)
     localStorage.setItem('levelsProgress', JSON.stringify(curenLevelsProgress))
-    console.log('current', curenLevelsProgress)
   }
 }
 
