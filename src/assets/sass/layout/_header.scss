@@ -1,4 +1,7 @@
 .header {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 375px);
   padding: 0 10px;
   color: $color-light-l;
   background: $color-light-s;
@@ -15,5 +18,13 @@
       top: 8px;
       margin: 0 10px 0 0;
     }
+  }
+
+  &__reset-button {
+    padding: 3px;
+    font-size: 14px;
+    color: $color-light-xxl;
+    border: 2px solid $color-light-xxl;
+    background-color: brown;
   }
 }

@@ -23,6 +23,7 @@ class CSSDinnerApp {
   helpSyntax: HTMLElement
   helpPromt: HTMLElement
   helpList: HTMLElement
+  resetButton: HTMLElement | null
 
   constructor(levelNumber: number) {
     this.game = document.querySelector('.css-diner__game')
@@ -47,6 +48,7 @@ class CSSDinnerApp {
     this.helpSyntax = document.querySelector('.help__syntax') as HTMLElement
     this.helpPromt = document.querySelector('.help__promt') as HTMLElement
     this.helpList = document.querySelector('.help__list') as HTMLElement
+    this.resetButton = document.querySelector('.header__reset-button')
   }
 
   public start(): void {
@@ -70,6 +72,7 @@ class CSSDinnerApp {
       if (!this.levelsList.classList.contains('_active')) return
       this.renderBurgerMenu()
     })
+    this.resetButton?.addEventListener('click', this.resetProgress)
   }
 
   private renderBurgerMenu() {
@@ -231,6 +234,13 @@ class CSSDinnerApp {
   private setLevelsProgress() {
     const curenLevelsProgress: boolean[] = this.levels.map(level => level.isDone)
     localStorage.setItem('levelsProgress', JSON.stringify(curenLevelsProgress))
+  }
+
+  private resetProgress = () => {
+    localStorage.removeItem('levelsProgress')
+    this.getLevelsProgress()
+    this.levelNumber = 0
+    this.renderLevel(this.levelNumber)
   }
 }
 
