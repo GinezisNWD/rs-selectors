@@ -188,7 +188,7 @@
   }
 
   &__help {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 375px;
@@ -401,7 +401,7 @@
     bottom: 0;
     right: -100%;
     z-index: 5;
-    height: 95%;
+    height: calc(100% - 52px);
     width: 100%;
     display: flex;
     flex-direction: column;
