@@ -75,12 +75,12 @@ class CSSDinnerApp {
     this.resetButton?.addEventListener('click', this.resetProgress)
   }
 
-  private renderBurgerMenu() {
+  private renderBurgerMenu(): void {
     this.levelsList.innerHTML = ''
     this.levels.forEach(elem => this.createBurgerMenu(elem))
   }
 
-  private createBurgerMenu(level: Level) {
+  private createBurgerMenu(level: Level): void {
     const item = document.createElement('li')
     item.classList.add('css-diner__levels-item')
     item.innerText = `${level.curentLevel} ${level.title}`
@@ -114,7 +114,7 @@ class CSSDinnerApp {
     }
   }
 
-  private renderHelpList(helpList: string[]): void {
+  private renderHelpList<T extends string>(helpList: T[]): void {
     this.helpList.innerHTML = ''
     helpList.forEach(example => {
       const helpExample = document.createElement('li')
@@ -169,7 +169,7 @@ class CSSDinnerApp {
     }
   }
 
-  private renderPrevLevel = () => {
+  private renderPrevLevel = (): void => {
     if (!this.prevLvlButton?.classList.contains('_active')) return
     if (!this.nextLvlButton?.classList.contains('_active')) this.nextLvlButton?.classList.add('_active')
     this.levelNumber -= 1
@@ -177,7 +177,7 @@ class CSSDinnerApp {
     this.contolsValidation()
   }
 
-  private renderNextLevel = () => {
+  private renderNextLevel = (): void => {
     if (!this.nextLvlButton?.classList.contains('_active')) return
     if (!this.prevLvlButton?.classList.contains('_active')) this.prevLvlButton?.classList.add('_active')
 
@@ -187,7 +187,7 @@ class CSSDinnerApp {
     this.contolsValidation()
   }
 
-  private contolsValidation() {
+  private contolsValidation(): void {
     if (this.levelNumber + 1 >= this.levels.length) {
       this.nextLvlButton?.classList.remove('_active')
     }
@@ -197,13 +197,13 @@ class CSSDinnerApp {
     }
   }
 
-  private levelAssistant = () => {
+  private levelAssistant = (): void => {
     this.input.value = ''
     this.input.classList.remove('css-diner__input_strobe')
     this.printAnswer(this.levels[this.levelNumber].correctAnswer)
   }
 
-  private printAnswer = (str: string) => {
+  private printAnswer = (str: string): void => {
     this.helpButton?.removeEventListener('click', this.levelAssistant)
     this.prevLvlButton?.removeEventListener('click', this.renderPrevLevel)
     this.nextLvlButton?.removeEventListener('click', this.renderNextLevel)
@@ -220,7 +220,7 @@ class CSSDinnerApp {
     }
   }
 
-  private getLevelsProgress() {
+  private getLevelsProgress(): void {
     if (localStorage.getItem('levelsProgress') === null) {
       const defaultLevelProgress: boolean[] = new Array(this.levels.length).fill(false)
       localStorage.setItem('levelsProgress', JSON.stringify(defaultLevelProgress))
@@ -231,12 +231,12 @@ class CSSDinnerApp {
     }
   }
 
-  private setLevelsProgress() {
+  private setLevelsProgress(): void {
     const curenLevelsProgress: boolean[] = this.levels.map(level => level.isDone)
     localStorage.setItem('levelsProgress', JSON.stringify(curenLevelsProgress))
   }
 
-  private resetProgress = () => {
+  private resetProgress = (): void => {
     localStorage.removeItem('levelsProgress')
     this.getLevelsProgress()
     this.levelNumber = 0
