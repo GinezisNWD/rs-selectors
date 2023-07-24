@@ -1,0 +1,286 @@
+tag {
+  padding: 3px 6px;
+  color: $color-light-xl;
+  background: rgba(255, 255, 255, .1);
+
+  &::before {
+    content: '<';
+  }
+
+  &::after {
+    content: '>';
+  }
+}
+
+strong {
+  padding: 3px 6px;
+  font-size: 14px;
+  color: $color-light-xl;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.bento,
+.plate,
+.fancy {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 8px 0px rgba(0, 0, 0, .1);
+}
+
+
+.plate,
+.fancy {
+  background-color: #ffffff;
+  border-bottom: solid 5px #DDD;
+  border-radius: 50%;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: calc(50% - 32px);
+    top: calc(50% - 32px);
+    height: 65px;
+    width: 65px;
+    border-radius: 60px;
+    border-top: solid 6px #CCC;
+    opacity: .4;
+    background: rgba(255, 255, 255, 1);
+  }
+}
+
+.bento {
+  background-color: #a52a2a;
+  border: solid 3px #711c12;
+  border-width: 20px 2px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: calc(100%);
+    top: 0;
+    left: 0;
+    border: solid 10px rgba(0, 0, 0, .1);
+    border-width: 10px 0 0 0px;
+  }
+}
+
+.fancy {
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 2;
+    height: 90px;
+    width: 90px;
+    border-radius: 60px;
+    border: solid 10px #009ff2;
+    opacity: .4;
+  }
+}
+
+.orange,
+.apple,
+.pickle {
+  z-index: 3;
+  box-shadow: 0px 5px 0px rgba(0, 0, 0, .2);
+  display: inline-block;
+  margin: 0 10px;
+  height: 60px;
+}
+
+.plate .apple,
+.plate .orange {
+  left: 10px;
+}
+
+.plate .apple,
+.plate .orange,
+.plate .pickle,
+.fancy .apple,
+.fancy .orange,
+.fancy .pickle {
+  &._hover {
+    box-shadow: 0px 0px 0px 6px rgba(100, 100, 100, 0.4);
+  }
+}
+
+.bento .apple,
+.bento .orange {
+  top: -20px;
+  left: 5px;
+}
+
+.plate .pickle,
+.fancy .pickle {
+  left: 25px;
+}
+
+.bento .pickle {
+  top: -20px;
+  left: 25px;
+}
+
+.apple,
+.orange {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  margin: 20px 10px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px 4px 15px 4px;
+}
+
+.orange:before,
+.apple:before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, .3);
+  height: 30%;
+  width: 30%;
+  top: 0px;
+  left: calc(50% - 15%);
+  border-radius: 100px;
+}
+
+.apple {
+  background: #e41919;
+  border-color: #ab1212;
+}
+
+.orange {
+  background: orange;
+  border-color: #bd6e07;
+}
+
+.pickle {
+  background: #179837;
+  width: 25px;
+  border-radius: 30px;
+  display: inline-block;
+  position: relative;
+  margin: 20px 10px;
+  border: solid 2px #025a18;
+  border-width: 2px 2px 9px 2px;
+}
+
+.orange.small,
+.apple.small {
+  height: 30px;
+  width: 30px;
+  border-width: 2px 4px 8px 4px;
+  margin: 30px 10px;
+}
+
+.plate .small,
+.bento .small,
+.fancy .small {
+  left: 22.5px;
+}
+
+.strobe {
+  transform-origin: bottom;
+  animation: strobe 1s infinite;
+  animation-delay: 0s;
+}
+
+.shake {
+  animation: shake .1s 5;
+}
+
+.win {
+  position: relative;
+  background-color: green;
+  animation: win .3s 3;
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 154, 31, 0.804);
+  }
+
+  &::after {
+    content: 'Sucefull!!';
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    color: white;
+    font-size: 50px;
+  }
+}
+
+// Анимация взята с оригинального приложения
+@keyframes strobe {
+  0% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+
+  10% {
+    transform: skew(1deg, 0deg) scaleY(.9);
+  }
+
+  50% {
+    transform: skew(-4deg, 0deg) scaleX(1);
+  }
+
+  60% {
+    transform: skew(-1deg, 0deg) scaleY(.9);
+  }
+
+  100% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+}
+
+@keyframes input-strobe {
+  0% {
+    background-color: inherit;
+  }
+
+  50% {
+    background-color: rgba(145, 231, 248, 0.9);
+  }
+
+  100% {
+    background-color: inherit;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(0);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes win {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
